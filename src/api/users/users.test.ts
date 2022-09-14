@@ -11,7 +11,7 @@ beforeAll(async () => {
 });
 
 describe('GET /api/v1/users', () => {
-  it('responds with an empty array', async () => 
+  it('responds successfully with an array of 0 or more', async () => 
     request(app)
       .get('/api/v1/users')
       .set('Accept', 'application/json')
