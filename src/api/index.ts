@@ -4,6 +4,7 @@ import MessageResponse from '../interfaces/MessageResponse';
 import emojis from './emojis';
 import users from './users/users.routes';
 import goalsets from './goalsets/goalsets.routes';
+import goals from './goals/goals.routes';
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.get<{}, MessageResponse>('/', (req, res) => {
 router.use('/emojis', emojis);
 router.use('/users', users);
 router.use('/goalsets', goalsets);
+router.use('/goals', goals);
 
 export default router;
