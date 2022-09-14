@@ -8,7 +8,7 @@
     "dev": "nodemon --files src/index.ts",
     "build": "tsc",
     "lint": "eslint --fix src test",
-    "test": "jest"
+    "test": "jest -i"
   },
   "keywords": [],
   "author": "Doss Buckalew <dbuckalew@gmail.com>",
