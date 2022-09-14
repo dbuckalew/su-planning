@@ -1,9 +1,13 @@
 import * as z from 'zod';
 
-const Goalset = z.object({
+const dateSchema = z.preprocess((arg) => {
+  if (typeof arg == "string" || arg instanceof Date) return new Date(arg);
+}, z.date());
+
+export const Goalset = z.object({
   id: z.number().optional(),
-  begin_date: z.date(),
-  end_date: z.date().nullable().default(null)
+  begin_date: dateSchema,
+  end_date: dateSchema.nullable().default(null)
 });
 
 export type Goalset = z.infer<typeof Goalset>;
