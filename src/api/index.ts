@@ -5,6 +5,7 @@ import emojis from './emojis';
 import users from './users/users.routes';
 import goalsets from './goalsets/goalsets.routes';
 import goals from './goals/goals.routes';
+import resulttypes from './resulttypes/resulttypes.routes';
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ router.use('/emojis', emojis);
 router.use('/users', users);
 router.use('/goalsets', goalsets);
 router.use('/goals', goals);
+router.use('/types', resulttypes);
 
 export default router;
