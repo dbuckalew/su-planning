@@ -23,13 +23,13 @@ describe('GET /api/v1/plans', () => {
 let id = '';
 let completiondate = new Date();
 describe('POST /api/v1/plans', () => {
-  it('responds with an error if the user is invalid', async () =>
+  it('responds with an error if the plan is invalid', async () =>
     request(app)
       .post('/api/v1/plans')
       .set('Accept', 'application/json')
       .send({
         ayear: 1,
-        outcomenumber: 1,
+        outcomenumber: '1',
         goal: 1,
         objective: '',
         outcometype: '',
@@ -57,7 +57,7 @@ describe('POST /api/v1/plans', () => {
       .send({
         fileID: 1,
         ayear: 2,
-        outcomenumber: 1,
+        outcomenumber: '1',
         goal: 1,
         objective: 'Objective',
         outcometype: '',
@@ -85,44 +85,50 @@ describe('POST /api/v1/plans', () => {
   );
 });
 
-describe(`GET /api/v1/plans/${id}`, () => {
-  it('responds with a single user', async () => 
+describe(`GET /api/v1/plans/1`, () => {
+  it('responds with a single plan', async () => 
     request(app)
-      .get(`/api/v1/plans/${id}`)
+      .get(`/api/v1/plans/1`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
       .then((response) => {
+        console.log(`FETCH SINGLE PLAN RESULT: ${JSON.stringify(response.body)}`);
         let result = Plan.safeParse(response.body);
+        console.log(`FETCH SINGLE PLAN PARSE RESULT: ${JSON.stringify(result)}`);
         expect(result.success).toEqual(true);
       }),
   )
 });
 
-describe(`PUT /api/v1/plans/${id}`, () => {
+describe(`PUT /api/v1/plans/1`, () => {
   it('responds with a single user', async () => 
     request(app)
-      .put(`/api/v1/plans/${id}`)
+      .put(`/api/v1/plans/1`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .send({
-        ayear: 1,
-        outcomenumber: 1,
+        fileID: 1,
+        ayear: 2,
+        outcomenumber: '1',
         goal: 1,
         objective: '',
         outcometype: '',
+        outcome: '',
         graduatecompetencies: '',
         assessment: '',
         completiondate: new Date(completiondate.toDateString()),
         budget: '0',
         action: 'Some action was taken',
         unit_id: 1,
+        measure: '',
         created_at: completiondate,
         updated_at: new Date(),
         created_by: 1,
       })
       .expect(200)
       .then((response) => {
+        console.log(`PLAN PUT RESPONSE: ${JSON.stringify(response.body)}`);
         let result = Plan.safeParse(response.body);
         expect(result.success).toEqual(true);
         expect(response.body.action).toEqual('Some action was taken');

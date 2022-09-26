@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/', PlanHandlers.findAll);
 
-router.get('/:id', 
+router.get('/:fileID', 
   validateRequest({
     params: ParamsWithFileId
   }),
@@ -23,7 +23,7 @@ router.post('/',
   PlanHandlers.addOne
 );
 
-router.put('/:id',
+router.put('/:fileID',
   validateRequest({
     params: ParamsWithFileId,
     body: Plan

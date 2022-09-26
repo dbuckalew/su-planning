@@ -7,7 +7,7 @@ const dateSchema = z.preprocess((arg) => {
 export const Plan = z.object({
   fileID: z.number().optional(),
   ayear: z.number().min(1),
-  outcomenumber: z.number().min(1),
+  outcomenumber: z.string().min(1),
   goal: z.number().min(1),
   objective: z.string().default(''),
   outcometype: z.string().default(''),

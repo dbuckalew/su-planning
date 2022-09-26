@@ -4,8 +4,17 @@ import app from '../../app';
 import { User, Table } from './users.model';
 import { db } from '../../db';
 
+// Need to empty the database here as the first test suite to run
+import { Plan } from '../plans/plans.model';
+import { Leader } from '../leaders/leaders.model';
+import { Goalset } from '../goalsets/goalsets.model';
+
 beforeAll(async () => {
   try {
+    await db<Plan>('unitdata').del();
+    await db<Leader>('leaders').del();
+    await db<Goalset>('goalsets').del();
+
     await db<User>(Table).del();
   } catch (error) {}
 });

@@ -23,6 +23,7 @@ export async function findOne(req: Request<ParamsWithId>, res: Response<User>, n
 
 export async function addOne(req: Request<{}, User, User>, res: Response<User>, next: NextFunction) {
   try {
+    console.log(`INSERTING USER ${JSON.stringify(req.body)}`);
     const id = await db<User>(Table).insert(req.body);
     // console.log(`INSERTED ID ${id}`)
     const user = await db<User>(Table).select('*').where('id', id[0]).first();
