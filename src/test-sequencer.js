@@ -13,6 +13,8 @@ class CustomSequencer extends Sequencer {
       path.join(__dirname, '/api/units/units.test.ts'),
       path.join(__dirname, '/api/years/years.test.ts'),
       path.join(__dirname, '/api/resulttypes/resulttypes.test.ts'),
+      path.join(__dirname, '/api/leaders/leaders.test.ts'),
+      path.join(__dirname, '/api/plans/plans.test.ts'),
     ];
     // console.log('TEST ORDER', tests);
     //return tests;

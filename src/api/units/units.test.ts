@@ -52,7 +52,7 @@ describe('POST /api/v1/units', () => {
       .then((response) => {
         expect(response.body).toHaveProperty('id');
         id = response.body.id;
-        console.log(`RETURNED ID: ${id}`)
+        // console.log(`RETURNED ID: ${id}`)
         expect(response.body).toHaveProperty('unit_number');
         expect(response.body.unit_number).toEqual('0121202');
       }),

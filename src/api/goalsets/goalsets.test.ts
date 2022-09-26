@@ -52,7 +52,7 @@ describe('POST /api/v1/goalsets', () => {
       .then((response) => {
         expect(response.body).toHaveProperty('id');
         id = response.body.id;
-        console.log(`RETURNED ID: ${id}`)
+        // console.log(`RETURNED ID: ${id}`)
         expect(response.body).toHaveProperty('begin_date');
         expect(new Date(response.body.begin_date)).toEqual(bdate);
       }),

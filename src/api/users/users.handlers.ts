@@ -24,11 +24,12 @@ export async function findOne(req: Request<ParamsWithId>, res: Response<User>, n
 export async function addOne(req: Request<{}, User, User>, res: Response<User>, next: NextFunction) {
   try {
     const id = await db<User>(Table).insert(req.body);
-    console.log(`INSERTED ID ${id}`)
+    // console.log(`INSERTED ID ${id}`)
     const user = await db<User>(Table).select('*').where('id', id[0]).first();
     res.status(201);
     res.json(user);
   } catch (error) {
+    res.status(422);
     next(error);
   }
 }
@@ -36,7 +37,7 @@ export async function addOne(req: Request<{}, User, User>, res: Response<User>, 
 export async function updateOne(req: Request<ParamsWithId, User, User>, res: Response<User>, next: NextFunction) {
   try {
     const result = await db<User>(Table).where('id', parseInt(req.params.id)).update(req.body);
-    console.log('UPDATED', result);
+    // console.log('UPDATED', result);
     const updated_user = await db<User>(Table).select('*').where('id', req.params.id);
     if (updated_user.length < 1) {
       res.status(404);

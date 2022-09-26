@@ -50,7 +50,7 @@ describe('POST /api/v1/years', () => {
       .then((response) => {
         expect(response.body).toHaveProperty('id');
         id = response.body.id;
-        console.log(`RETURNED ID: ${id}`)
+        // console.log(`RETURNED ID: ${id}`)
         expect(response.body).toHaveProperty('beginyear');
         expect(response.body.beginyear).toEqual(2011);
       }),

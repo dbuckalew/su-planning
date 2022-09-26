@@ -8,6 +8,8 @@ import goals from './goals/goals.routes';
 import units from './units/units.routes';
 import years from './years/years.routes';
 import resulttypes from './resulttypes/resulttypes.routes';
+import leaders from './leaders/leaders.routes';
+import plans from './plans/plans.routes';
 
 const router = express.Router();
 
@@ -24,5 +26,7 @@ router.use('/goals', goals);
 router.use('/units', units);
 router.use('/years', years);
 router.use('/types', resulttypes);
+router.use('/leaders', leaders);
+router.use('/plans', plans);
 
 export default router;

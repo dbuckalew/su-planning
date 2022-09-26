@@ -9,7 +9,7 @@ export function validateRequest(validators: RequestValidators) {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       if (validators.params) {
-        console.log(`PARAMS ${JSON.stringify(req.params)}`)
+        // console.log(`PARAMS ${JSON.stringify(req.params)}`)
         req.params = await validators.params.parseAsync(req.params);
       }
       if (validators.body) {
@@ -21,7 +21,7 @@ export function validateRequest(validators: RequestValidators) {
       next();
     } catch (error) {
       if (error instanceof ZodError) {
-        console.log(`VALIDATION ERROR ${JSON.stringify(error)}`)
+        // console.log(`VALIDATION ERROR ${JSON.stringify(error)}`)
         res.status(422);
       }
       next(error);

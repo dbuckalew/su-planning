@@ -50,7 +50,7 @@ describe('POST /api/v1/types', () => {
       .then((response) => {
         expect(response.body).toHaveProperty('id');
         id = response.body.id;
-        console.log(`RETURNED ID: ${id}`)
+        // console.log(`RETURNED ID: ${id}`)
         expect(response.body).toHaveProperty('name');
         expect(response.body.name).toEqual('TEST');
       }),

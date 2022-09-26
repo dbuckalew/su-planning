@@ -42,6 +42,7 @@ describe('POST /api/v1/goals', () => {
       .post('/api/v1/goals')
       .set('Accept', 'application/json')
       .send({
+        id: 1,
         setid: 1,
         goal_num: 1,
         goal_name: 'Goal Name',
@@ -52,7 +53,7 @@ describe('POST /api/v1/goals', () => {
       .then((response) => {
         expect(response.body).toHaveProperty('id');
         id = response.body.id;
-        console.log(`RETURNED ID: ${id}`)
+        // console.log(`RETURNED ID: ${id}`)
         expect(response.body).toHaveProperty('goal_name');
         expect(response.body.goal_name).toEqual('Goal Name');
       }),

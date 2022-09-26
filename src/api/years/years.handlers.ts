@@ -24,11 +24,12 @@ export async function findOne(req: Request<ParamsWithId>, res: Response<Year>, n
 export async function addOne(req: Request<{}, Year, Year>, res: Response<Year>, next: NextFunction) {
   try {
     const id = await db<Year>(Table).insert(req.body);
-    console.log(`INSERTED ID ${id}`)
+    // console.log(`INSERTED ID ${id}`)
     const year = await db<Year>(Table).select('*').where('id', id[0]).first();
     res.status(201);
     res.json(year);
   } catch (error) {
+    res.status(422);
     next(error);
   }
 }
@@ -36,7 +37,7 @@ export async function addOne(req: Request<{}, Year, Year>, res: Response<Year>, 
 export async function updateOne(req: Request<ParamsWithId, Year, Year>, res: Response<Year>, next: NextFunction) {
   try {
     const result = await db<Year>(Table).where('id', parseInt(req.params.id)).update(req.body);
-    console.log('UPDATED', result);
+    // console.log('UPDATED', result);
     const updated_year = await db<Year>(Table).select('*').where('id', req.params.id);
     if (updated_year.length < 1) {
       res.status(404);
